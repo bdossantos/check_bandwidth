@@ -6,6 +6,9 @@
 #   -iface/--interface)
 #       Interface name (eth0 by default)
 #
+#   -s/--sleep)
+#       Sleep time between both statistics measures
+#
 #   -w/--warning)
 #       Warning value (KB/s)
 #
@@ -22,6 +25,10 @@ while test -n "$1"; do
     case "$1" in
         --interface|-iface)
             OPT_INTERFACE=$2
+            shift
+            ;;
+        --sleep|-s)
+            OPT_SLEEP=$2
             shift
             ;;
         --warning|-w)
@@ -43,10 +50,11 @@ done
 OPT_WARN=${OPT_WARN:=50}
 OPT_CRIT=${OPT_CRIT:=70}
 OPT_INTERFACE=${OPT_INTERFACE:=eth0}
+OPT_SLEEP=${OPT_SLEEP:=5}
 
 R1=$(cat /sys/class/net/$OPT_INTERFACE/statistics/rx_bytes)
 T1=$(cat /sys/class/net/$OPT_INTERFACE/statistics/tx_bytes)
-sleep 10
+sleep $OPT_SLEEP
 R2=$(cat /sys/class/net/$OPT_INTERFACE/statistics/rx_bytes)
 T2=$(cat /sys/class/net/$OPT_INTERFACE/statistics/tx_bytes)
 

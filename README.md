@@ -4,13 +4,16 @@
 
 ```
 -iface/--interface)
-   Interface name (eth0 by default)
+  Interface name (eth0 by default)
+
+-s/--sleep)
+  Sleep time between both statistics measures
 
 -w/--warning)
-   Warning value (KB/s)
+  Warning value (KB/s)
 
 -c/--critical)
-   Critical value (KB/s)
+  Critical value (KB/s)
 ```
 
 ## Usage
